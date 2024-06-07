@@ -1,0 +1,2 @@
+login: id:sinopmobilya
+şifre:5757
