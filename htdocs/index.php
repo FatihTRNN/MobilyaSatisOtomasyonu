@@ -1,21 +1,14 @@
 <?php
 session_start();
 
-
-// Kullanıcı oturumu kontrol et
-if (isset($_SESSION['kullanici_adi'])) {
-    // Kullanıcı oturumu var, giriş yapmıştır
-    $kullanici_adi = $_SESSION['kullanici_adi'];
-    $hosgeldiniz_mesaji = "Hoş geldiniz, $kullanici_adi!";
-} else {
-    // Kullanıcı oturumu yok, giriş yapmamıştır
-    $hosgeldiniz_mesaji = "Giriş yapmadınız.";
-}
-
 // Kullanıcı oturumu kontrol et
 if (!isset($_SESSION['kullanici_adi'])) {
     header("Location: giris.php"); // Kullanıcı oturumu yoksa giriş sayfasına yönlendir
     exit();
+} else {
+    // Kullanıcı oturumu var, giriş yapmıştır
+    $kullanici_adi = $_SESSION['kullanici_adi'];
+    $hosgeldiniz_mesaji = "Hoş geldiniz, $kullanici_adi!";
 }
 
 // Veritabanı bağlantısını içe aktar

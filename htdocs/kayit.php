@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: giris.php?hata_mesaji=" . urlencode($hata_mesaji));
         exit();
     } else {
-        $sql_kullanici = "INSERT INTO Kullanicilar (kullanici_adi, sifre) VALUES (?, ?)";
+        $sql_kullanici = "INSERT INTO Kullanicilar (kullanici_adi, sifre) VALUES (?, ?)"; // ? yer tutucu olarak girilen değer yazılıyor.
         $stmt = $conn->prepare($sql_kullanici);
         $stmt->bind_param("ss", $kullanici_adi, $sifre);
 

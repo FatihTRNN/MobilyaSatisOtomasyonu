@@ -1,10 +1,5 @@
 <?php
 session_start();
-if (!isset($_SESSION['kullanici'])) {
-    header("Location: giris.php");
-    exit();
-}
-
 // Kullanıcı oturumu kontrol et
 if (!isset($_SESSION['kullanici_adi'])) {
     header("Location: giris.php"); // Kullanıcı oturumu yoksa giriş sayfasına yönlendir

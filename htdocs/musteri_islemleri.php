@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['kullanici'])) {
+if (!isset($_SESSION['kullanici'])) { // Kullanıcı kontrolu
     header("Location: admin_giris.php");
     exit();
 }
