@@ -1,0 +1,1 @@
+Uygulamalar php ve c# aynı veritabanına bağlıdır. Mysql üzerinden mobilyasatis adında bir database oluşturup içe aktararak kullanabilirsiniz.// The applications in PHP and C# are connected to the same database. You can create a database named 'mobilyasatis' in MySQL and use it by importing the data.
