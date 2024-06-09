@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $sonuc = $stmt->get_result();
 
-    if ($sonuc->num_rows > 0) {
+    if ($sonuc->num_rows > 0) { 
         $hata_mesaji = "Bu kullanıcı sisteme kayıtlı!";
         header("Location: giris.php?hata_mesaji=" . urlencode($hata_mesaji));
         exit();
@@ -205,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <input type="text" id="kullanici_adi" name="kullanici_adi" placeholder="Kullanıcı Adı" required="required" /><br>
             <input type="password" id="sifre" name="sifre" placeholder="Parola" required="required" /><br>
-            <button type="submit" class="btn btn-primary btn-block btn-large">Kayıt Ol</button>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Kayıt Ol</button> <!--Kayıt ol butonu -->
         </form>
         <br>
         <a href="giris.php" class="btn btn-primary btn-block btn-large">Girişe Dön</a>

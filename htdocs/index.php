@@ -122,13 +122,13 @@ if (isset($_SESSION['sepet'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-    $(document).ready(function(){
+    $(document).ready(function(){ // Belge tamamen yüklendiğinde bu kod çalıştır
         $('.add-to-cart-form').on('submit', function(e){
-            e.preventDefault();
-            var form = $(this);
-            $.post('', form.serialize(), function(){
-                var cartCount = parseInt($('#cart-count').text());
-                $('#cart-count').text(cartCount + 1);
+            e.preventDefault(); // Formun varsayılan gönderme davranışını durdur
+            var form = $(this); // Olayın tetiklendiği formu seç ve form değişkenine ata.
+            $.post('', form.serialize(), function(){  // Form verilerini belirtilen URL'ye gönder. Boş bırakılan URL'yi kendi ihtiyacınıza göre doldurmalısınız.
+                var cartCount = parseInt($('#cart-count').text()); // Mevcut alışveriş sepeti sayısını al ve tam sayıya çevir.
+                $('#cart-count').text(cartCount + 1); // Alışveriş sepeti sayısını 1 artır ve güncelle.
             });
         });
     });

@@ -133,6 +133,7 @@ if (isset($_SESSION['sepet'])) {
                         <td>₺<?php echo $urun['satisFiyat']; ?></td>
                         <td>
                             <input type="number" name="miktar" value="<?php echo $urun['miktar']; ?>" class="form-control miktar-input" data-urun-id="<?php echo $urun['urunID']; ?>" style="width: 60px;">
+                          <!--Miktar Butonu-->
                         </td>
                         <td class="toplam-fiyat">₺<?php echo $urun['satisFiyat'] * $urun['miktar']; ?></td>
                         <td>

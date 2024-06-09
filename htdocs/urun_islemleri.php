@@ -26,7 +26,7 @@ function urunListele($conn) {
         while($row = $result->fetch_assoc()) {  // Her ürün için tablo satırı oluştur
             echo "<tr><td>".$row["urunID"]."</td><td>".$row["urunAd"]."</td><td>".$row["stok"]."</td><td>".$row["alisFiyat"]."</td><td>".$row["satisFiyat"]."</td><td>".$row["kar"]."</td>
             <td><img src='".$row["resim"]."' alt='Ürün Fotoğrafı' class='img-thumbnail' style='width:50px;height:50px;'></td>
-            <td><form method='post' action='".$_SERVER["PHP_SELF"]."'><input type='hidden' name='guncelle_urun_id' value='".$row["urunID"]."'><input type='submit' name='guncelle_urun' value='Güncelle' class='btn btn-warning'></form></td>
+            <td><form method='post' action='".$_SERVER["PHP_SELF"]."'><input type='hidden' name='guncelle_urun_id' value='".$row["urunID"]."'><input type='submit' name='guncelle_urun' value='Güncelle' class='btn btn-warning'></form></td> 
             <td><form method='post' action='".$_SERVER["PHP_SELF"]."'><input type='hidden' name='sil_urun_id' value='".$row["urunID"]."'><input type='submit' name='sil_urun' value='Sil' class='btn btn-danger' onclick='return confirm(\"Bu kaydı silmek istediğinize emin misiniz?\")'></form></td></tr>";
         }
         echo "</tbody></table>";
@@ -241,15 +241,15 @@ if(isset($_POST['logout'])) {
         </div>
         <div class="form-group">
             <label>Stok:</label>
-            <input type="text" name="stok" class="form-control" required>
+            <input type="number" id="stok" name="stok" min="1" value="0" class="form-control">
         </div>
         <div class="form-group">
             <label>Alış Fiyatı:</label>
-            <input type="text" name="alisFiyat" class="form-control" required>
+            <input type="number" id="Alış Fiyatı" name="alisFiyat" min="1" value="1" class="form-control">
         </div>
         <div class="form-group">
             <label>Satış Fiyatı:</label>
-            <input type="text" name="satisFiyat" class="form-control" required>
+            <input type="number" id="Satış Fiyatı" name="satisFiyat" min="1" value="1" class="form-control">
         </div>
         <div class="form-group">
             <label>Ürün Fotoğrafı:</label>

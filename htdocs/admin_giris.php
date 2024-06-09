@@ -10,7 +10,7 @@ if (isset($_POST['kullanici_adi']) && isset($_POST['sifre'])) {
 
     if (!empty($kullaniciAdi) && !empty($sifre)) { 
         // Veritabanı sorgusu
-        $sorgu = "SELECT * FROM kullanicilar WHERE kullanici_adi = ? AND sifre = ? AND rol = 'admin'";
+        $sorgu = "SELECT * FROM kullanicilar WHERE kullanici_adi = ? AND sifre = ? AND rol = 'admin'"; // eğer rolü admin değilse giriş yapamaz.
         $stmt = $conn->prepare($sorgu);
         $stmt->bind_param("ss", $kullaniciAdi, $sifre);
         $stmt->execute();

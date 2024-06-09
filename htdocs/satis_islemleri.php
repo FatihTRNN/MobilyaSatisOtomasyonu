@@ -1,6 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION['kullanici'])) { // Kullanıcı kontrolu
+session_start(); 
+if (!isset($_SESSION['kullanici'])) { // Kullanıcı kontrolü
     header("Location: admin_giris.php");
     exit();
 }
@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 
 function urunListele($conn) {
     $sql = "SELECT urunID, urunAd FROM Urunler WHERE durum = true AND stok > 0"; // 'durum' true ve 'stok' 0'dan büyük olan ürünleri veritabanından seç
-    $result = $conn->query($sql);
+    $result = $conn->query($sql); // sonuç= veritabanı --> sorgusu 
     
     if ($result->num_rows > 0) { // Eğer sonuçlar varsa, ürünleri dropdown menüde listele
         echo "<option value=''>Ürün Seçiniz</option>";
@@ -78,12 +78,16 @@ if(isset($_POST["confirmSale"])) { // Satış işlemini onaylama
     }
 
     if ($conn->query($sql) === TRUE) {
+        // Stok miktarını güncelle
+        $sql_stok = "UPDATE Urunler SET stok = stok - '$adet' WHERE urunID = '$urunID'";
+        $conn->query($sql_stok);
         echo json_encode(array("success" => true));
     } else {
         echo json_encode(array("success" => false, "error" => $conn->error));
     }
     exit();
 }
+
 // Çıkış yapma işlemi
 if(isset($_POST['logout'])) {
     session_unset();
@@ -138,12 +142,12 @@ if(isset($_POST['logout'])) {
             <input type="number" id="adet" name="adet" min="1" value="1" class="form-control">
         </div>
         
-        <button type="button" id="calculateBtn" class="btn btn-info">Hesapla</button>
+        <button type="button" id="calculateBtn" class="btn btn-info">Hesapla</button> <!-- Hesapla butonu -->
         <div class="form-group mt-2">
             <label>Toplam Fiyat:</label>
             <span id="toplamFiyat" class="form-control-plaintext"></span>
         </div>
-        <button type="button" id="confirmSaleBtn" class="btn btn-success">Satış Yap</button>
+        <button type="button" id="confirmSaleBtn" class="btn btn-success">Satış Yap</button> <!-- Satış Yap butonu -->
     </form>
     
     <h2 class="mt-5">Satış Listesi</h2>
@@ -159,7 +163,7 @@ if(isset($_POST['logout'])) {
         </thead>
         <tbody>
             <?php
-            $sql = "SELECT u.urunAd, CONCAT(m.ad, ' ', m.soyad) AS adSoyad, s.adet, s.toplamFiyat, s.tarih 
+            $sql = "SELECT u.urunAd, CONCAT(m.ad, ' ', m.soyad) AS adSoyad, s.adet, s.toplamFiyat, s.tarih -- Prosedür çağırma ürün ad isim ad bağlama --
                     FROM SatisListesi s
                     JOIN Urunler u ON s.urunID = u.urunID
                     JOIN Musteriler m ON s.musteriID = m.musteriID";
@@ -190,7 +194,7 @@ if(isset($_POST['logout'])) {
 $(document).ready(function(){
     var hesaplamaYapildi = false;
 
-    $("#calculateBtn").click(function(){ //Hesapla butonu 
+    $("#calculateBtn").click(function(){ // Hesapla fonksiyonu 
         var urunID = $("#urunID").val();
         var adet = $("#adet").val();
         $.post("<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>", {
@@ -209,7 +213,7 @@ $(document).ready(function(){
         });
     });
 
-    $("#confirmSaleBtn").click(function(){ // Satış yap butonu
+    $("#confirmSaleBtn").click(function(){ // Satış yap fonksiyonu
         if (!hesaplamaYapildi) {
             alert("Lütfen önce hesaplama işlemini yapın.");
             return;
@@ -235,6 +239,5 @@ $(document).ready(function(){
     });
 });
 </script>
-
 </body>
 </html>
